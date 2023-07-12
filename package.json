@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "vite"
+    "start": "vite",
+    "build": "vite build",
+    "loc": "vite --mode loc"
   },
   "dependencies": {
     "lodash": "^4.17.21",
