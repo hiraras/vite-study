@@ -1,0 +1,9 @@
+:root {
+    --globalColor: skyblue;
+}
+
+.text {
+    filter: blur(100px);
+    color: var(--globalColor);
+    display: flex;
+}
