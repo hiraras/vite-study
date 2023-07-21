@@ -25,9 +25,15 @@ export default defineConfig({
     postcss: {
       plugins: [
         postcssPresetEnv({
-          importFrom: path.resolve(__dirname, "./variable.css"),
+          importFrom: path.resolve(__dirname, "./css/variable.css"),
         }),
       ],
+    },
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      "@assets": path.resolve(__dirname, "./src/assets"),
     },
   },
 });
