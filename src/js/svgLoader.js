@@ -1,5 +1,5 @@
 // import src from "@/assets/svgs/hamburger.svg";
-import src from "@/assets/svgs/hamburger.svg?raw";
+import src from "@assets/svgs/hamburger.svg?raw";
 
 document.body.innerHTML += src;
 

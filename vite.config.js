@@ -18,6 +18,7 @@ export default defineConfig(({ command, mode }) => {
   // 可以传入一个数组，以匹配多种变量名
   const env = loadEnv(mode, process.cwd(), ["BASE_", "VITE_"]);
   console.log("env", env);
+
   return envResolver[command]();
 });
 

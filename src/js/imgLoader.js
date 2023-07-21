@@ -1,4 +1,4 @@
-import src from "@/assets/images/plane.jpg";
+import src from "@assets/images/plane.jpg";
 
 const img = document.createElement("img");
 

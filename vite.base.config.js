@@ -1,4 +1,7 @@
 import { defineConfig } from "vite";
+import { ViteAliases } from "vite-aliases";
+import MyViteAliases from "./plugins/ViteAliases";
+import TestPlugin from "./plugins/Test";
 
 const postcssPresetEnv = require("postcss-preset-env");
 
@@ -36,4 +39,18 @@ export default defineConfig({
       "@assets": path.resolve(__dirname, "./src/assets"),
     },
   },
+  build: {
+    rollupOptions: {
+      // 配置rollup的一些构建策略
+      output: {
+        // ext为拓展名，name为文件名，hash代表将你的文件名和文件内容进行组合计算的结果
+        assetFileNames: "[hash].[name].[ext]",
+      },
+    },
+    assetsInlineLimit: 4096, // 将图片大小小于该值的，转化为base64，默认为4kb
+    outDir: "dist", // 打包输出目录
+    assetsDir: "static", // 静态资源的目录
+    emptyOutDir: true, // 清除输出目录中的所有文件
+  },
+  plugins: [MyViteAliases(), TestPlugin],
 });
