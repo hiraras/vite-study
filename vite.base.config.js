@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import { ViteAliases } from "vite-aliases";
 import MyViteAliases from "./plugins/ViteAliases";
 import TestPlugin from "./plugins/Test";
+import CreateHtmlPlugin from "./plugins/CreateHtmlPlugin";
 
 const postcssPresetEnv = require("postcss-preset-env");
 
@@ -52,5 +53,15 @@ export default defineConfig({
     assetsDir: "static", // 静态资源的目录
     emptyOutDir: true, // 清除输出目录中的所有文件
   },
-  plugins: [MyViteAliases(), TestPlugin],
+  plugins: [
+    MyViteAliases(),
+    TestPlugin,
+    CreateHtmlPlugin({
+      inject: {
+        data: {
+          title: "home",
+        },
+      },
+    }),
+  ],
 });
