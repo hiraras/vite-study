@@ -8,4 +8,26 @@ import "./src/js/json-loader.js";
 import "./src/js/imgLoader.js";
 import "./src/js/svgLoader.js";
 
+import "./src/ts/test";
+
 console.log("count", count);
+
+fetch("/api/users", {
+  method: "post",
+})
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((e) => {
+    console.log(e);
+  });
+
+fetch("/api/tasks", {
+  method: "post",
+})
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((e) => {
+    console.log(e);
+  });

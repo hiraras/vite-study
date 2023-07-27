@@ -3,6 +3,9 @@ import { ViteAliases } from "vite-aliases";
 import MyViteAliases from "./plugins/ViteAliases";
 import TestPlugin from "./plugins/Test";
 import CreateHtmlPlugin from "./plugins/CreateHtmlPlugin";
+import { viteMockServe } from "vite-plugin-mock";
+import VitePluginMock from "./plugins/VitePluginMock";
+import Checker from "vite-plugin-checker";
 
 const postcssPresetEnv = require("postcss-preset-env");
 
@@ -62,6 +65,22 @@ export default defineConfig({
           title: "home",
         },
       },
+    }),
+    // viteMockServe(),
+    VitePluginMock({ mockPath: "mock" }),
+    {
+      configResolved(options) {
+        // console.log("configResolved options", options);
+      },
+      options(options) {
+        // console.log("rollup options", options);
+      },
+      buildStart(fullRollupOptions) {
+        // console.log("fullRollupOptions", fullRollupOptions);
+      },
+    },
+    Checker({
+      typescript: true,
     }),
   ],
 });
