@@ -6,6 +6,7 @@ import CreateHtmlPlugin from "./plugins/CreateHtmlPlugin";
 import { viteMockServe } from "vite-plugin-mock";
 import VitePluginMock from "./plugins/VitePluginMock";
 import Checker from "vite-plugin-checker";
+import viteCompression from "vite-plugin-compression";
 
 const postcssPresetEnv = require("postcss-preset-env");
 
@@ -44,11 +45,18 @@ export default defineConfig({
     },
   },
   build: {
+    minify: false, // 是否压缩
     rollupOptions: {
       // 配置rollup的一些构建策略
       output: {
         // ext为拓展名，name为文件名，hash代表将你的文件名和文件内容进行组合计算的结果
         assetFileNames: "[hash].[name].[ext]",
+        manualChunks: (id) => {
+          // id为打包的各个模块名
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
       },
     },
     assetsInlineLimit: 4096, // 将图片大小小于该值的，转化为base64，默认为4kb
@@ -82,5 +90,6 @@ export default defineConfig({
     Checker({
       typescript: true,
     }),
+    viteCompression(),
   ],
 });
