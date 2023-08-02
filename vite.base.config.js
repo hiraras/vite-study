@@ -7,6 +7,7 @@ import { viteMockServe } from "vite-plugin-mock";
 import VitePluginMock from "./plugins/VitePluginMock";
 import Checker from "vite-plugin-checker";
 import viteCompression from "vite-plugin-compression";
+import viteCDNPlugin from "vite-plugin-cdn-import";
 
 const postcssPresetEnv = require("postcss-preset-env");
 
@@ -91,5 +92,14 @@ export default defineConfig({
       typescript: true,
     }),
     viteCompression(),
+    viteCDNPlugin({
+      modules: [
+        {
+          name: "lodash", // 包名
+          var: "_", // 模块导出的变量名,jQuery就是 $
+          path: "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js", // cdn地址
+        },
+      ],
+    }),
   ],
 });
