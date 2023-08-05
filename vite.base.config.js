@@ -102,4 +102,13 @@ export default defineConfig({
       ],
     }),
   ],
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://www.360.com", // 代理地址
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""), // 重写请求地址
+      },
+    },
+  },
 });
